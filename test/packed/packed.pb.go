@@ -2042,7 +2042,10 @@ func (m *NinRepNative) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
+			if skippy < 0 {
+				return ErrInvalidLengthPacked
+			}
+			if (iNdEx + skippy) < 0 {
 				return ErrInvalidLengthPacked
 			}
 			if (iNdEx + skippy) > l {
@@ -2939,7 +2942,10 @@ func (m *NinRepPackedNative) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
+			if skippy < 0 {
+				return ErrInvalidLengthPacked
+			}
+			if (iNdEx + skippy) < 0 {
 				return ErrInvalidLengthPacked
 			}
 			if (iNdEx + skippy) > l {
@@ -3836,7 +3842,10 @@ func (m *NinRepNativeUnsafe) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
+			if skippy < 0 {
+				return ErrInvalidLengthPacked
+			}
+			if (iNdEx + skippy) < 0 {
 				return ErrInvalidLengthPacked
 			}
 			if (iNdEx + skippy) > l {
@@ -4733,7 +4742,10 @@ func (m *NinRepPackedNativeUnsafe) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
+			if skippy < 0 {
+				return ErrInvalidLengthPacked
+			}
+			if (iNdEx + skippy) < 0 {
 				return ErrInvalidLengthPacked
 			}
 			if (iNdEx + skippy) > l {

@@ -844,7 +844,7 @@ func (p *unmarshal) field(file *generator.FileDescriptor, msg *generator.Descrip
 			p.P(`return err`)
 			p.Out()
 			p.P(`}`)
-			p.P(`if (skippy < 0) || (iNdEx + skippy) < 0 {`)
+			p.P(`if skippy < 0 {`)
 			p.In()
 			p.P(`return ErrInvalidLength`, p.localName)
 			p.Out()
@@ -1140,7 +1140,30 @@ func (p *unmarshal) field(file *generator.FileDescriptor, msg *generator.Descrip
 		p.P(`return `, p.ioPkg.Use(), `.ErrUnexpectedEOF`)
 		p.Out()
 		p.P(`}`)
-		if !gogoproto.IsCustomType(field) {
+		if gogoproto.IsCastTypeWith(field) {
+			// for now only support pointers, non-repeating
+			if oneof || !nullable || repeated {
+				panic("casttypewith only supports single pointers")
+			}
+			_, _, _, casterTyp, err := generator.GetCastTypeWith(field)
+			if err != nil {
+				panic(err)
+			}
+			p.P(`{`)
+			p.In()
+			p.P("__caster := &", casterTyp, "{}")
+			p.P("if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {")
+			p.In()
+			p.P(`return err`)
+			p.Out()
+			p.P(`} else { `)
+			p.In()
+			p.P(`m.`, fieldname, "= tmp")
+			p.Out()
+			p.P(`}`)
+			p.Out()
+			p.P(`}`)
+		} else if !gogoproto.IsCustomType(field) {
 			if oneof {
 				p.P(`v := make([]byte, postIndex-iNdEx)`)
 				p.P(`copy(v, dAtA[iNdEx:postIndex])`)
@@ -1484,7 +1507,12 @@ func (p *unmarshal) Generate(file *generator.FileDescriptor) {
 			p.P(`return err`)
 			p.Out()
 			p.P(`}`)
-			p.P(`if (skippy < 0) || (iNdEx + skippy) < 0 {`)
+			p.P(`if skippy < 0 {`)
+			p.In()
+			p.P(`return ErrInvalidLength`, p.localName)
+			p.Out()
+			p.P(`}`)
+			p.P(`if (iNdEx + skippy) < 0 {`)
 			p.In()
 			p.P(`return ErrInvalidLength`, p.localName)
 			p.Out()
@@ -1507,7 +1535,12 @@ func (p *unmarshal) Generate(file *generator.FileDescriptor) {
 		p.P(`return err`)
 		p.Out()
 		p.P(`}`)
-		p.P(`if (skippy < 0) || (iNdEx + skippy) < 0 {`)
+		p.P(`if skippy < 0 {`)
+		p.In()
+		p.P(`return ErrInvalidLength`, p.localName)
+		p.Out()
+		p.P(`}`)
+		p.P(`if (iNdEx + skippy) < 0 {`)
 		p.In()
 		p.P(`return ErrInvalidLength`, p.localName)
 		p.Out()

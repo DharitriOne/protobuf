@@ -1335,7 +1335,10 @@ func (m *RequiredExample) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
+			if skippy < 0 {
+				return ErrInvalidLengthRequiredexample
+			}
+			if (iNdEx + skippy) < 0 {
 				return ErrInvalidLengthRequiredexample
 			}
 			if (iNdEx + skippy) > l {
@@ -1671,7 +1674,10 @@ func (m *NidOptNative) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
+			if skippy < 0 {
+				return ErrInvalidLengthRequiredexample
+			}
+			if (iNdEx + skippy) < 0 {
 				return ErrInvalidLengthRequiredexample
 			}
 			if (iNdEx + skippy) > l {
@@ -2062,7 +2068,10 @@ func (m *NinOptNative) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
+			if skippy < 0 {
+				return ErrInvalidLengthRequiredexample
+			}
+			if (iNdEx + skippy) < 0 {
 				return ErrInvalidLengthRequiredexample
 			}
 			if (iNdEx + skippy) > l {
@@ -2192,7 +2201,10 @@ func (m *NestedNinOptNative) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
+			if skippy < 0 {
+				return ErrInvalidLengthRequiredexample
+			}
+			if (iNdEx + skippy) < 0 {
 				return ErrInvalidLengthRequiredexample
 			}
 			if (iNdEx + skippy) > l {

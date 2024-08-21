@@ -1054,7 +1054,10 @@ func (m *Big) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
+			if skippy < 0 {
+				return ErrInvalidLengthUnmarshalmerge
+			}
+			if (iNdEx + skippy) < 0 {
 				return ErrInvalidLengthUnmarshalmerge
 			}
 			if (iNdEx + skippy) > l {
@@ -1161,7 +1164,10 @@ func (m *BigUnsafe) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
+			if skippy < 0 {
+				return ErrInvalidLengthUnmarshalmerge
+			}
+			if (iNdEx + skippy) < 0 {
 				return ErrInvalidLengthUnmarshalmerge
 			}
 			if (iNdEx + skippy) > l {
@@ -1232,7 +1238,10 @@ func (m *Sub) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
+			if skippy < 0 {
+				return ErrInvalidLengthUnmarshalmerge
+			}
+			if (iNdEx + skippy) < 0 {
 				return ErrInvalidLengthUnmarshalmerge
 			}
 			if (iNdEx + skippy) > l {
@@ -1466,7 +1475,10 @@ func (m *IntMerge) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
+			if skippy < 0 {
+				return ErrInvalidLengthUnmarshalmerge
+			}
+			if (iNdEx + skippy) < 0 {
 				return ErrInvalidLengthUnmarshalmerge
 			}
 			if (iNdEx + skippy) > l {

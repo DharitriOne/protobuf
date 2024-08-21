@@ -729,7 +729,10 @@ func (m *Dropped) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
+			if skippy < 0 {
+				return ErrInvalidLengthTypedeclall
+			}
+			if (iNdEx + skippy) < 0 {
 				return ErrInvalidLengthTypedeclall
 			}
 			if (iNdEx + skippy) > l {
@@ -817,7 +820,10 @@ func (m *DroppedWithoutGetters) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
+			if skippy < 0 {
+				return ErrInvalidLengthTypedeclall
+			}
+			if (iNdEx + skippy) < 0 {
 				return ErrInvalidLengthTypedeclall
 			}
 			if (iNdEx + skippy) > l {
@@ -918,7 +924,10 @@ func (m *Kept) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
+			if skippy < 0 {
+				return ErrInvalidLengthTypedeclall
+			}
+			if (iNdEx + skippy) < 0 {
 				return ErrInvalidLengthTypedeclall
 			}
 			if (iNdEx + skippy) > l {
